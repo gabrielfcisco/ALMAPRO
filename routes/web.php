@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +17,22 @@ Route::get('/request', function(\Illuminate\Http\Request $request){
     $r = $request->whenHas('keyword', function($input){
         dd('x', $input);
     });
+
+    if ($r) {
+        dd('Faça alguma coisa');
+    }
+
+    dd($r);
+    return 'x';
 });
 
-Route::get('user/{user:name}', function(\App\Models\User $user) {
-    return $user;
-});
+Route::get('user/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('users');
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+Route::get('users', [UserController::class, 'index'])->name('index');
 
 /* Route::get('/users/{id?}', function ($id=null) {
     return $id;
