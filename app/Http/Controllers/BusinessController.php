@@ -9,10 +9,13 @@ class BusinessController extends Controller
 {
     public function index()
     {
-        $businesses = business::where('name', 'Hand-Brown')->get();
-        dd($businesses);
-
-        $business = Business::find();
+        $business = Business::find(2);
+        $input = [
+            'name' => 'John Smith',
+            'email' => 'john@example.com'
+        ];
+        $business->fill($input);
+        $business->save();
         dd($business);
     }
 }
