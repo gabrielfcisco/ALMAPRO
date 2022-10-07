@@ -7,35 +7,62 @@ use App\Models\alunos;
 
 class AlunosController extends Controller
 {   
-    public function Create(Request $request)
+    public function index()
     {
-        $aluno = new alunos;
-        
-        $aluno->RA = $request->RA;
-        $aluno->Nome = $request->Nome;
-        $aluno->Sobrenome = $request->Sobrenome;
- 
-        $aluno->save();
+        $alunos = alunos::orderBy('id','desc')->paginate();
+        return view('alunos.index', compact('alunos'));
+
+    }
+
+    public function CreateView()
+    {
+        return view('alunos.create');
+    }
+
+    public function Create(Request $request)
+    {   
+        $request->validate([
+            'RA' => 'required',
+            'Nome' => 'required',
+            'Sobrenome' => 'required',
+        ]);
+
+        alunos::create([
+            'RA' => $request->RA,
+            'Nome' => $request->Nome,
+            'Sobrenome' => $request->Sobrenome,
+        ]);
+
+        return redirect()->route('alunos.index')-with('ok', 'Alunos cadastrado com sucesso!');
         
     }
 
     public function Read(Request $request)
     {
-        $aluno = alunos::where('Nome', 'LIKE', $request->Nome)->get();
-        dd($aluno);
+        $aluno = alunos::where('RA', 'LIKE', $request->RA)->get();
+        return view('alunos.edit', compact('alunos'));
     }
 
-    public function Update(Request $request)
-    {
-        $aluno = alunos::where('Nome', 'LIKE', $request->Nome)
-                                ->update(['RA', $request->RA])
-                                ->update(['Nome', $request->Nome])
-                                ->update(['Sobrenome', $request->Sobrenome]);
-        dd($aluno);
+    public function Update(Request $request, alunos $aluno)
+    {   
+        $request->validate([
+            'RA' => 'required',
+            'Nome' => 'required',
+            'Sobrenome' => 'required',
+        ]);
+
+        $aluno = fill([
+            'RA' => $request->RA,
+            'Nome' => $request->Nome,
+            'Sobrenome' => $request->Sobrenome,
+        ]);
+
+        return redirect()->route('alunos.index')->with('ok', 'Aluno atualizado com sucesso!');
     }
     
-    public function Delete()
+    public function Delete(alunos $aluno)
     {
-
+        $aluno->delete();
+        return redirect()->route('alunos.index')->with('ok', 'Alunos removido com sucesso!');
     }
 }
