@@ -4,23 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\alunos;
+use App\Models\API;
+use Illuminate\Support\Facades\Http;
 
 class AlunosController extends Controller
-{   
-    public function index()
+{    
+    public function fetch()
     {
-        $alunos = alunos::orderBy('id','desc')->paginate();
-        return view('alunos.index', compact('alunos'));
+        $api = Http::get('https://www.learn-laravel.cf/movies?page=1');
+        $categories =  Http::get('https://www.learn-laravel.cf/categories');
+
+        $auxjson = json_decode($api, true);
+        $filmes = $auxjson['data'];
+
+        $auxcategories = json_decode($categories, true);
+
+        foreach ($filmes as $filme){
+        
+            for($i=0; $i<5 ;$i++){
+                if($filme['category_id'] == $auxcategories[$i]['id']){
+                    $filme['category_id'] = $auxcategories[$i]['id'];
+                    print_r($filme);
+                }
+            }
+            
+        }
+
+        dd($filme);
 
     }
 
-    public function CreateView()
+    public function index()
+    {
+        $alunos = alunos::orderBy('id', 'asc')->paginate(10);
+        return view('alunos.index', compact('alunos'));
+    }
+
+    public function create()
     {
         return view('alunos.create');
     }
 
-    public function Create(Request $request)
-    {   
+    public function store(Request $request)
+    {
         $request->validate([
             'RA' => 'required',
             'Nome' => 'required',
@@ -33,25 +59,29 @@ class AlunosController extends Controller
             'Sobrenome' => $request->Sobrenome,
         ]);
 
-        return redirect()->route('alunos.index')-with('ok', 'Alunos cadastrado com sucesso!');
-        
+        return redirect()->route('alunos.index')->with('ok', 'Alunos cadastrados com sucesso!');
     }
 
-    public function Read(Request $request)
+    public function show(alunos $aluno)
     {
-        $aluno = alunos::where('RA', 'LIKE', $request->RA)->get();
-        return view('alunos.edit', compact('alunos'));
+        $aluno->where('RA', 'LIKE', $aluno->RA)->get();
+        return view('alunos.show', compact('aluno'));
     }
 
-    public function Update(Request $request, alunos $aluno)
-    {   
+    public function edit(alunos $aluno)
+    {
+        return view('alunos.edit', compact('aluno'));
+    }
+
+    public function update(Request $request, alunos $aluno)
+    {
         $request->validate([
             'RA' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
         ]);
 
-        $aluno = fill([
+        $aluno->update([
             'RA' => $request->RA,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
@@ -59,8 +89,8 @@ class AlunosController extends Controller
 
         return redirect()->route('alunos.index')->with('ok', 'Aluno atualizado com sucesso!');
     }
-    
-    public function Delete(alunos $aluno)
+
+    public function destroy(alunos $aluno)
     {
         $aluno->delete();
         return redirect()->route('alunos.index')->with('ok', 'Alunos removido com sucesso!');

@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/alunos/{RA}/{Nome}/{Sobrenome}', [AlunosController::class, 'Create']);
-Route::get('busca/{Nome}', [AlunosController::class, 'Read']);
-Route::get('atualizar/{RA}/{Nome}/{Sobrenome}', [AlunosController::class, 'Create']);
+Route::resource('alunos', AlunosController::class);
+
+Route::get('filmes', [AlunosController::class, 'fetch']);
 
 Route::get('/', function () {
     return view('welcome');
