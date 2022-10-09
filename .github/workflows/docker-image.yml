@@ -16,6 +16,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker compose up
+    - name: Exit container
+      run: exit
     - name: Entry in container
       run: docker compose exec app bash
     - name: Install Composer
