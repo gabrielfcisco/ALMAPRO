@@ -14,19 +14,32 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Copy .evn
-      run: cp .env.example .env
+    
+    - name: Create env file
+        run: |
+          touch .env
+          echo APP_NAME=Laravel > .env
+          echo APP_URL=http://localhost:8080 > .env
+          echo DB_PASSWORD=root > .env
+          cat .env
+          
     - name: Build the Docker image
       run: docker compose up -d
+      
     - name: Exit container
       run: exit
+      
     - name: Entry in container
       run: docker compose exec app bash
+      
     - name: Install Composer
       run: composer install
+      
     - name: Generate Key
       run: php artisan key:generate
+      
     - name: Import Migrations to database
       run: php artisan migrate
+      
     - name: Populate database
       run: php artisan db:seed
