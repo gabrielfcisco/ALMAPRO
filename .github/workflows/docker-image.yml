@@ -35,9 +35,3 @@ jobs:
       
     - name: Generate Key
       run: php artisan key:generate
-      
-    - name: Import Migrations to database
-      run: php artisan migrate -y
-      
-    - name: Populate database
-      run: php artisan db:seed -y
