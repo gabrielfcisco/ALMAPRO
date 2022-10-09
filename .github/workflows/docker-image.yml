@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker compose up -d --file docker-compose.yml --tag my-image-name:$(date +%s)
+      run: docker compose up --tag my-image-name:$(date +%s)
     - name: Entry in container
       run: docker compose exec app bash
     - name: Install Composer
