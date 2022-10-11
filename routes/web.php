@@ -18,6 +18,10 @@ Route::resource('alunos', AlunosController::class);
 
 Route::get('filmes', [AlunosController::class, 'fetch']);
 
+Route::resource('professores', ProfessoresController::class);
+
+Route::resource('materias', MateriasController::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
