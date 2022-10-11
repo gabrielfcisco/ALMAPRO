@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\BusinessController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AlunosController;
+use App\Models\alunos;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/request', function(\Illuminate\Http\Request $request){
-    $r = $request->whenHas('keyword', function($input){
-        dd('x', $input);
-    });
+Route::resource('alunos', AlunosController::class);
 
-    if ($r) {
-        dd('Faça alguma coisa');
-    }
-
-    dd($r);
-    return 'x';
-});
-
-Route::get('user/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('users');
+Route::get('filmes', [AlunosController::class, 'fetch']);
 
 Route::get('/', function () {
     return view('welcome');

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Http\Controllers\BusinessController;
 use App\Models\business;
+use App\Models\alunos;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        business::factory(2)->create();
+        alunos::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
