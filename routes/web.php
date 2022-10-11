@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('alunos', AlunosController::class);
 
+Route::resource('professores', ProfessoresController::class)
+
+Route::resource('materias', MateriasController::class)
+
 Route::get('filmes', [AlunosController::class, 'fetch']);
 
 Route::get('/', function () {
