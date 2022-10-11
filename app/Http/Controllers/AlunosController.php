@@ -11,26 +11,30 @@ class AlunosController extends Controller
 {    
     public function fetch()
     {
-        $api = Http::get('https://www.learn-laravel.cf/movies?page=1');
-        $categories =  Http::get('https://www.learn-laravel.cf/categories');
+        $filmes = array();
 
-        $auxjson = json_decode($api, true);
-        $filmes = $auxjson['data'];
+        $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
+        $categories = json_decode($auxcategories, true);
 
-        $auxcategories = json_decode($categories, true);
+        for($j=1; $j<7; $j++) {
 
-        foreach ($filmes as $filme){
-        
-            for($i=0; $i<5 ;$i++){
-                if($filme['category_id'] == $auxcategories[$i]['id']){
-                    $filme['category_id'] = $auxcategories[$i]['id'];
-                    print_r($filme);
+            $api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
+            $auxjson = json_decode($api, true);
+            $api = $auxjson['data'];
+
+            foreach ($api as $filme){
+                for($i=0 ; $i<6; $i++){
+                    if($filme['category_id'] == $i+1){
+                        $filmes[] = array(
+                            'id' => $filme['id'], 
+                            'name' => $filme['name'],
+                            'category' => $categories[$i]['name']);
+                    }
                 }
-            }
-            
-        }
+            };
+        } 
 
-        dd($filme);
+        return $filmes;
 
     }
 
@@ -41,8 +45,31 @@ class AlunosController extends Controller
     }
 
     public function create()
-    {
-        return view('alunos.create');
+    {   
+        $filmes = array();
+
+        $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
+        $categories = json_decode($auxcategories, true);
+
+        for($j=1; $j<7; $j++) {
+
+            $api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
+            $auxjson = json_decode($api, true);
+            $api = $auxjson['data'];
+
+            foreach ($api as $filme){
+                for($i=0 ; $i<6; $i++){
+                    if($filme['category_id'] == $i+1){
+                        $filmes[] = array(
+                            'id' => $filme['id'], 
+                            'nome' => $filme['name'],
+                            'category' => $categories[$i]['name']);
+                    }
+                }
+            };
+        } 
+
+        return view('alunos.create', ['filmes' => $filmes]);
     }
 
     public function store(Request $request)
@@ -51,12 +78,14 @@ class AlunosController extends Controller
             'RA' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
+            'Filmes' => 'required',
         ]);
 
         alunos::create([
             'RA' => $request->RA,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
+            'Filmes' => $request->Filmes,
         ]);
 
         return redirect()->route('alunos.index')->with('ok', 'Alunos cadastrados com sucesso!');

@@ -40,6 +40,22 @@
 			    <label for="Sobrenome" class="form-label">Sobrenome</label>
 			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" value="{{$aluno->Sobrenome}}">
 		  	</div>
+			<div class="mb-3">
+				<select class="filmes" name="states[]" multiple="multiple">
+					@if($filmes->count() > 0)
+						@foreach($filmes as $filme)
+						<option>{{$filme['name']}}</option>
+					@endforeach
+					@else
+						<option colspan="4">Record not found!</option>
+					@endif
+				</select>
+				<script>
+					$(document).ready(function() {
+						$('.filmes').select2();
+					});
+				</script>
+			</div>
 		  	<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>

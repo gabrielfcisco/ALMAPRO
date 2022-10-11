@@ -39,12 +39,25 @@
 			    <label for="Sobrenome" class="form-label">Sobrenome</label>
 			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
 		  	</div>
+			  <div class="mb-3">
+			  <label for="Filmes" class="form-label">Filmes</label>
+				<select name="filmes[]" multiple class="form-control">
+					@if(count($filmes) > 0)
+						@foreach($filmes as $filme)
+						<option value="{{ $filme['id'] }}">{{ $filme['nome'] }}</option>
+					@endforeach
+					@else
+						<option colspan="4">Record not found!</option>
+					@endif
+				</select>
+				<script>
+					$(document).ready(function() {
+						$('.filmes').select2();
+					});
+				</script>
+			</div>
 		  	<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
-        <select class="filmes" name="fimes[]" multiple="multiple">
-            <option value="AL">Alabama</option>
-            <option value="WY">Wyoming</option>
-        </select>
 	</div>
 
 </div>

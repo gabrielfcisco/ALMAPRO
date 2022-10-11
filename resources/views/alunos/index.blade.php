@@ -27,7 +27,7 @@
 		      <th scope="col">RA</th>
 			  <th scope="col">Nome</th>
 		      <th scope="col">Sobrenome</th>
-		      <th scope="col">Action</th>
+		      <th scope="col">Ação</th>
 		    </tr>
 		  	</thead>
 		  	<tbody>
@@ -40,11 +40,11 @@
 			      <td>{{$aluno->Sobrenome}}</td>
 			      <td>
   	                <form action="{{ route('alunos.destroy', $aluno->id) }}" method="POST">
-                    	<a class="btn btn-info" href="{{ route('alunos.show', $aluno->id) }}">Show</a>
-                    	<a class="btn btn-primary" href="{{ route('alunos.edit', $aluno->id) }}">Edit</a>
+                    	<a class="btn btn-info" href="{{ route('alunos.show', $aluno->id) }}">Detalhes</a>
+                    	<a class="btn btn-primary" href="{{ route('alunos.edit', $aluno->id) }}">Editar</a>
 	                    @csrf
 	                    @method('DELETE')
-	                    <button type="submit" class="btn btn-danger">Delete</button>
+	                    <button type="submit" class="btn btn-danger">Excluir</button>
                 	</form>
 			      </td>
 			    </tr>
