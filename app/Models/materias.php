@@ -11,6 +11,6 @@ class materias extends Model
     protected $fillable = [
         'Nome',
         'Creditos',
-        'Professor',       
+        'RP',       
     ];
 }

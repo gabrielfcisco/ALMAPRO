@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -128,6 +129,8 @@
                 </div>
             </div>
         </div> -->
-        <a href="/alunos">alunos</a>
+        <a class="btn btn-info" href="/alunos">alunos</a>
+        <br>
+        <a class="btn btn-info" href="/materias">materias</a>
     </body>
 </html>
