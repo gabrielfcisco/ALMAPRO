@@ -18,11 +18,11 @@
 	  		@if($materias->count() > 0)
 			  	@foreach($materias as $materia)
 			    <tr>
-			      <td>{{$materia->id}}</td>
-				  <td>{{$materia->Nome}}</td>
-			      <td>{{$materia->Creditos}}</td>
-			      <td>{{$materias->RP}}</td>
-			      <td>
+			      	<td>{{$materia->id}}</td>
+					<td>{{$materia->Nome}}</td>
+			     	<td>{{$materia->Creditos}}</td>
+			      	<td>{{$materias->RP}}</td>
+			      	<td>
   	                <form action="{{ route('materias.destroy', $materia->id) }}" method="POST">
                     	<a class="btn btn-info" href="{{ route('materias.show', $materia->id) }}">Detalhes</a>
                     	<a class="btn btn-primary" href="{{ route('materias.edit', $materia->id) }}">Editar</a>

@@ -30,7 +30,7 @@ class MateriasController extends Controller
             'RP' => $request->RP,
         ]);
 
-        return redirect()->route('materias.index')->with('ok', 'materias cadastrados com sucesso!');
+        return redirect()->route('materias.index')->with('ok', 'Materias cadastradas com sucesso!');
     }
 
     public function show(materias $materias)
@@ -49,13 +49,11 @@ class MateriasController extends Controller
         $request->validate([
             'Nome' => 'required',
             'Credito' => 'required',
-            'RP' => 'required',
         ]);
 
         $materia->update([
             'Nome' => $request->Nome,
             'Credito' => $request->Credito,
-            'RP' => $request->RP,
         ]);
 
         return redirect()->route('materias.index')->with('ok', 'Materia atualizada com sucesso!');
