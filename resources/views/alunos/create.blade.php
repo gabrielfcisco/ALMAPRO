@@ -39,12 +39,23 @@
 			    <label for="Sobrenome" class="form-label">Sobrenome</label>
 			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
 		  	</div>
-			  <div class="mb-3">
+			<!--<div class="mb-3">
 			  <label for="Filmes" class="form-label">Filmes</label>
 				<select name="filmes[]" multiple class="form-control">
-					@if(count($filmes) > 0)
-						@foreach($filmes as $filme)
-						<option value="{{ $filme['id'] }}">{{ $filme['nome'] }}</option>
+					
+				</select>
+				<script>
+					$(document).ready(function() {
+						$('.filmes').select2();
+					});
+				</script>
+			</div>-->
+			<div class="mb-3">
+			  <label for="Materias" class="form-label">Matérias</label>
+				<select name="id_materia[]" multiple class="form-control">
+					@if(count($materias) > 0)
+						@foreach($materias as $materia)
+						<option value="{{ $materia['id'] }}">{{ $materia['Nome'] }}</option>
 					@endforeach
 					@else
 						<option colspan="4">Record not found!</option>
@@ -52,7 +63,7 @@
 				</select>
 				<script>
 					$(document).ready(function() {
-						$('.filmes').select2();
+						$('.id_materia').select2();
 					});
 				</script>
 			</div>

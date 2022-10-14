@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\professores
+use App\Models\alunos
 ;
-use App\Models\API;
+use App\Models\Materias;
 use Illuminate\Support\Facades\Http;
 
-class ProfessoresController extends Controller
+class AlunosController extends Controller
 {   
         
 
     public function index()
     {
-        $professores = professores::orderBy('id', 'asc')->paginate(10);
-        return view('professores.index', compact('professores'));
+        $alunos = alunos::orderBy('id', 'asc')->paginate(10);
+        return view('alunos.index', compact('alunos'));
     }
 
     public function create()
     {   
-        $filmes = array();
+        /*$filmes = array();
 
         $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
         $categories = json_decode($auxcategories, true);
@@ -41,9 +41,11 @@ class ProfessoresController extends Controller
                     }
                 }
             };
-        } 
+        } */
 
-        return view('professores.create', ['filmes' => $filmes]);
+        $materias = materias::orderBy('Nome', 'asc')->get();
+
+        return view('alunos.create', compact('materias'));
     }
 
     public function store(Request $request)
@@ -53,57 +55,95 @@ class ProfessoresController extends Controller
             'Nome' => 'required',
             'Sobrenome' => 'required',
             'Filmes' => 'required',
+            'id_materia' => 'required',
         ]);
 
-        professores::create([
+        alunos::create([
             'RA' => $request->RA,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
             'Filmes' => $request->Filmes,
+            'id_materia' => $request->id_materia,
         ]);
 
-        return redirect()->route('professores.index')->with('ok', 'professores cadastrados com sucesso!');
+        return redirect()->route('alunos.index')->with('ok', 'alunos cadastrados com sucesso!');
     }
 
-    public function show(professores $aluno)
+    public function show(alunos $aluno)
     {
         $aluno->where('RA', 'LIKE', $aluno->RA)->get();
-        return view('professores
-        .show', compact('aluno'));
+        $id = explode(',', $aluno->id);
+
+        $materias = array();
+        foreach($id as $i)
+        {
+        $materias = Materias::where('id', 'LIKE', $i)->get();
+        }
+
+        return view('alunos.show', compact('aluno'), compact('materias'));
     }
 
-    public function edit(professores
+    public function edit(alunos
      $aluno)
     {
-        return view('professores
-        .edit', compact('aluno'));
+        /*$filmes = array();
+
+        $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
+        $categories = json_decode($auxcategories, true);
+
+        for($j=1; $j<7; $j++) {
+
+            $api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
+            $auxjson = json_decode($api, true);
+            $api = $auxjson['data'];
+
+            foreach ($api as $filme){
+                for($i=0 ; $i<6; $i++){
+                    if($filme['category_id'] == $i+1){
+                        $filmes[] = array(
+                            'id' => $filme['id'], 
+                            'nome' => $filme['name'],
+                            'category' => $categories[$i]['name']);
+                    }
+                }
+            };
+        } */
+
+        $materias = materias::orderBy('Nome', 'asc')->get();
+
+        return view('alunos
+        .edit', compact('aluno'), compact('materias'));
     }
 
-    public function update(Request $request, professores
+    public function update(Request $request, alunos
      $aluno)
     {
         $request->validate([
             'RA' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
+            'Filmes' => 'required',
+            'id_materia' => 'required',
         ]);
 
         $aluno->update([
             'RA' => $request->RA,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
+            'Filmes' => $request->Filmes,
+            'id_materia' => $request->id_materia,
         ]);
 
-        return redirect()->route('professores
+        return redirect()->route('alunos
         .index')->with('ok', 'Aluno atualizado com sucesso!');
     }
 
-    public function destroy(professores
+    public function destroy(alunos
      $aluno)
     {
         $aluno->delete();
-        return redirect()->route('professores
-        .index')->with('ok', 'professores
+        return redirect()->route('alunos
+        .index')->with('ok', 'alunos
          removido com sucesso!');
     }
 }

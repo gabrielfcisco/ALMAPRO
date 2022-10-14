@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('Nome');
             $table->string('Sobrenome');
             $table->string('Filmes');
+            $table->string('id_materia');
             $table->timestamps();
         });
     }

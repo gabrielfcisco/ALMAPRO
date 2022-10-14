@@ -12,6 +12,7 @@ class alunos extends Model
         'RA',
         'Nome',
         'Sobrenome',
-        'Filmes',       
+        'Filmes',
+        'id_materia',       
     ];
 }
