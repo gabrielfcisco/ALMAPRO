@@ -51,7 +51,7 @@
 			    @endforeach
 		    @else
 		    <tr>
-		      <td colspan="4">Record not found!</td>
+		      <td colspan="4">Registro não encontrado!</td>
 		    </tr>
 		    @endif
 		  	</tbody>

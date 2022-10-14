@@ -25,20 +25,20 @@
 @endif
 <div class="row">
 	<div class="col-12">
-		<form method="POST" action="{{route('professores.update', $professores->id)}}">
+		<form method="POST" action="{{ route('professores.update', $professor->id) }}">
 			@csrf
 			@method('PUT')
 			<div class="mb-3">
 			    <label for="RP" class="form-label">RP</label>
-			    <input type="text" class="form-control" id="RP" name="RP" value="{{$professores->RP}}">
+			    <input type="text" class="form-control" id="RP" name="RP" value="{{$professor->RP}}">
 		  	</div>
 			<div class="mb-3">
 			    <label for="Nome" class="form-label">Nome</label>
-			    <input type="text" class="form-control" id="Nome" name="Nome" value="{{$professores->Nome}}">
+			    <input type="text" class="form-control" id="Nome" name="Nome" value="{{$professor->Nome}}">
 		  	</div>
 		  	<div class="mb-3">
 			    <label for="Sobrenome" class="form-label">Sobrenome</label>
-			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" value="{{$professores->Sobrenome}}">
+			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" value="{{$professor->Sobrenome}}">
 		  	</div>
 		  	<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
