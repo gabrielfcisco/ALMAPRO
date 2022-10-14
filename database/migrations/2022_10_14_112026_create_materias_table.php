@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nome');
             $table->string('Creditos');
-            $table->string('Professor');
+            $table->string('RP');
             $table->timestamps();
         });
     }
