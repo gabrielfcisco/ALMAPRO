@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AlunosController;
+use App\Http\Controllers\ProfessoresController;
 use App\Models\alunos;
+use App\Models\professores;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource('alunos', AlunosController::class);
+
+Route::resource('professores', ProfessoresController::class);
 
 Route::get('filmes', [AlunosController::class, 'fetch']);
 

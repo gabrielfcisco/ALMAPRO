@@ -17,7 +17,9 @@ class ProfessoresFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'RP' => $this->faker->numerify('########'),
+            'Nome' => $this->faker->firstName($gender = null),
+            'Sobrenome' => $this->faker->lastName(),
         ];
     }
 }
