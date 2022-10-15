@@ -41,6 +41,7 @@
 		  	</div>
 			<!--<div class="mb-3">
 			  <label for="Filmes" class="form-label">Filmes</label>
+<<<<<<< Updated upstream
 				<select name="filmes[]" multiple class="form-control">
 					
 				</select>
@@ -57,6 +58,13 @@
 						@foreach($materias as $materia)
 						<option value="{{ $materia['id'] }}">{{ $materia['Nome'] }}</option>
 					@endforeach
+=======
+			  <select class="filmes" name="Filmes[]" multiple="multiple" id="Filmes" >
+					@if(count($filmes) > 0)
+						@foreach($filmes as $filme)
+							<option value="{{ $filme['nome'] }}">{{ $filme['nome'] }}</option>
+						@endforeach
+>>>>>>> Stashed changes
 					@else
 						<option colspan="4">Record not found!</option>
 					@endif
@@ -67,7 +75,7 @@
 					});
 				</script>
 			</div>
-		  	<button type="submit" class="btn btn-primary">Submit</button>
+		  	<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
 	</div>
 

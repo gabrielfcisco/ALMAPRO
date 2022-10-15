@@ -12,7 +12,7 @@ class AlunosController extends Controller
 {  
     public function index()
     {
-        $alunos = alunos::orderBy('id', 'asc')->paginate(10);
+        $alunos = alunos::orderBy('Nome', 'asc')->paginate(10);
         return view('alunos.index', compact('alunos'));
     }
 
@@ -60,8 +60,12 @@ class AlunosController extends Controller
             'RA' => $request->RA,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
+<<<<<<< Updated upstream
             'Filmes' => $request->Filmes,
             'id_materia' => $request->id_materia,
+=======
+            'Filmes' => implode(", ", $request->Filmes),
+>>>>>>> Stashed changes
         ]);
 
         return redirect()->route('alunos.index')->with('ok', 'alunos cadastrados com sucesso!');
