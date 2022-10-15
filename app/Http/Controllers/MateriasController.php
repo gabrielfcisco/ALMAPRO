@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\materias;
-use App\Models\API;
 use Illuminate\Support\Facades\Http;
 
 class MateriasController extends Controller
@@ -29,13 +28,14 @@ class MateriasController extends Controller
             'Creditos' => $request->Creditos,
             'RP' => $request->RP,
         ]);
+            
 
         return redirect()->route('materias.index')->with('ok', 'Materias cadastradas com sucesso!');
     }
 
-    public function show(materias $materias)
+    public function show(materias $materia)
     {
-        $materias->where('RP', 'LIKE', $materias->RP)->get();
+        $materia->where('RP', 'LIKE', $materia->RP)->get();
         return view('materias.show', compact('materias'));
     }
 
@@ -63,5 +63,9 @@ class MateriasController extends Controller
     {
         $materia->delete();
         return redirect()->route('materias.index')->with('ok', 'Materia removida com sucesso!');
+    }
+
+    public function create() {
+        return view('materias.create');
     }
 }
