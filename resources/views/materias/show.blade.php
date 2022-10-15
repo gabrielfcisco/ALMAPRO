@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="col-12 col-md-10">
-        <h3>Detalhes - materias</h3>
+        <h3>Detalhes - Matérias</h3>
     </div>
     <div class="col-12 col-md-2 text-end">
         <a class="btn btn-primary" href="{{route('materias.index')}}">Voltar</a>

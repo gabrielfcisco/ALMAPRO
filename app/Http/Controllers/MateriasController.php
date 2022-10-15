@@ -36,7 +36,7 @@ class MateriasController extends Controller
     public function show(materias $materia)
     {
         $materia->where('RP', 'LIKE', $materia->RP)->get();
-        return view('materias.show', compact('materias'));
+        return view('materias.show', compact('materia'));
     }
 
     public function edit(materias $materia)
@@ -49,11 +49,13 @@ class MateriasController extends Controller
         $request->validate([
             'Nome' => 'required',
             'Creditos' => 'required',
+            'RP' => 'required',
         ]);
 
         $materia->update([
             'Nome' => $request->Nome,
             'Creditos' => $request->Creditos,
+            'RP' => $request->RP,
         ]);
 
         return redirect()->route('materias.index')->with('ok', 'Materia atualizada com sucesso!');

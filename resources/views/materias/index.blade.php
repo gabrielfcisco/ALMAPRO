@@ -34,24 +34,23 @@
 	  		@if($materias->count() > 0)
 			  	@foreach($materias as $materia)
 			    <tr>
-			      <td>{{$materia->id}}</td>
-				  <td>{{$materia->RP}}</td>
-			      <td>{{$materia->Nome}}</td>
-			      <td>{{$materia->Creditos}}</td>
-			      <td>
-  	                <form action="{{ route('materias.destroy', $materia->id) }}" method="GET">@csrf
+			      	<td>{{$materia->id}}</td>
+				  	<td>{{$materia->RP}}</td>
+			      	<td>{{$materia->Nome}}</td>
+			      	<td>{{$materia->Creditos}}</td>
+			      	<td>
                     	<a class="btn btn-info" href="{{ route('materias.show', $materia->id) }}">Detalhes</a>
                     	<a class="btn btn-primary" href="{{ route('materias.edit', $materia->id) }}">Editar</a>
-	                    
-	                    @method('DELETE')
-	                    <button type="submit" class="btn btn-danger">Excluir</button>
-                	</form>
-			      </td>
+						<form action="{{ route('materias.destroy', $materia->id) }}" method="GET">@csrf
+	                    	@method('DELETE')
+	                    	<button type="submit" class="btn btn-danger">Excluir</button>
+                		</form>
+			      	</td>
 			    </tr>
 			    @endforeach
 		    @else
 		    <tr>
-		      <td colspan="4">Record not found!</td>
+		    	<td colspan="4">Record not found!</td>	
 		    </tr>
 		    @endif
 		  	</tbody>
