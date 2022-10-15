@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AlunosController;
+use App\Http\Controllers\ProfessoresController;
+use App\Http\Controllers\MateriasController;
 use App\Models\alunos;
 use Illuminate\Support\Facades\Route;
 
@@ -16,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('alunos', AlunosController::class);
 
-Route::get('filmes', [AlunosController::class, 'fetch']);
+Route::resource('professores', ProfessoresController::class);
+
+Route::resource('materias', MateriasController::class);
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');

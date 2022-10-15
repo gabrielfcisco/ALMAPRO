@@ -41,10 +41,11 @@
 			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" value="{{$aluno->Sobrenome}}">
 		  	</div>
 			<div class="mb-3">
-				<select class="filmes" name="states[]" multiple="multiple">
-					@if($filmes->count() > 0)
+				<label for="Filmes" class="form-label">Filmes</label>
+				<select class="filmes" name="Filmes[]" multiple="multiple" id="Filmes" value="{{$aluno->Filmes}}">
+					@if(count($filmes) > 0)
 						@foreach($filmes as $filme)
-						<option>{{$filme['name']}}</option>
+						<option value="{{ $filme['nome'] }}">{{ $filme['nome'] }}</option>
 					@endforeach
 					@else
 						<option colspan="4">Record not found!</option>
@@ -56,6 +57,8 @@
 					});
 				</script>
 			</div>
+		  	<button type="submit" class="btn btn-primary">Enviar</button>
+			
 		  	<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
