@@ -25,3 +25,4 @@ Route::get('filmes', [AlunosController::class, 'fetch']);
 Route::get('/', function () {
     return view('welcome');
 });
+
