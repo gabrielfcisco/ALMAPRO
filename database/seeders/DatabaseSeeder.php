@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\business;
 use App\Models\alunos;
+use App\Models\professores;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         alunos::factory(10)->create();
+        professores::factory(5)->create();
 
     }
 }
