@@ -12,15 +12,15 @@
 <div class="row">
     <div class="col-12 mb-3">
         <strong>RP: </strong>
-        {{ $professor->RP }}
+        {{ $professore->RP }}
     </div>
     <div class="col-12 mb-3">
         <strong>Nome: </strong>
-        {{ $professor->Nome }}
+        {{ $professore->Nome }}
     </div>
     <div class="col-12 mb-3">
         <strong>Sobrenome: </strong>
-        {{ $professor->Sobrenome }}
+        {{ $professore->Sobrenome }}
     </div>
 </div>
 @endsection
