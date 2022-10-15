@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AlunosController;
+use App\Http\Controllers\ProfessoresController;
+use App\Http\Controllers\MateriasController;
 use App\Models\alunos;
 use Illuminate\Support\Facades\Route;
 
@@ -16,17 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('alunos', AlunosController::class);
 
-Route::get('filmes', [AlunosController::class, 'fetch']);
+Route::resource('professores', ProfessoresController::class);
+
+Route::resource('materias', MateriasController::class);
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-Route::get('businesses', [BusinessController::class, 'index']);
-Route::get('users', [UserController::class, 'index'])->name('index');
-
-/* Route::get('/users/{id?}', function ($id=null) {
-    return $id;
-    //return view('welcome');
-})->name('empresa.a');
-*/

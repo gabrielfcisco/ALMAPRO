@@ -24,6 +24,16 @@
     <div class="col-12 mb-3">
         <strong>Filmes: </strong>
         {{ $aluno->Filmes }}
+        <strong>Matérias: </strong>
+            <p>
+            @if(count($materias) > 0)
+				@foreach($materias as $materia)
+                    {{ $materia->Nome }}<br>
+				@endforeach
+			@else
+				<option colspan="4">Record not found!</option>
+			@endif
+            </p>
     </div>
 </div>
 @endsection

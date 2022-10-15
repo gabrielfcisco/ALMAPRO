@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\alunos;
-use App\Models\API;
+use App\Models\alunos
+;
+use App\Models\Materias;
 use Illuminate\Support\Facades\Http;
 
 class AlunosController extends Controller
@@ -17,7 +18,7 @@ class AlunosController extends Controller
 
     public function create()
     {   
-        $filmes = array();
+        /*$filmes = array();
 
         $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
         $categories = json_decode($auxcategories, true);
@@ -38,9 +39,11 @@ class AlunosController extends Controller
                     }
                 }
             };
-        } 
+        } */
 
-        return view('alunos.create', ['filmes' => $filmes]);
+        $materias = materias::orderBy('Nome', 'asc')->get();
+
+        return view('alunos.create', compact('materias'));
     }
 
     public function store(Request $request)
@@ -50,6 +53,7 @@ class AlunosController extends Controller
             'Nome' => 'required',
             'Sobrenome' => 'required',
             'Filmes' => 'required',
+            'id_materia' => 'required',
         ]);
 
         alunos::create([
@@ -57,20 +61,28 @@ class AlunosController extends Controller
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
             'Filmes' => $request->Filmes,
+            'id_materia' => $request->id_materia,
         ]);
 
-        return redirect()->route('alunos.index')->with('ok', 'Alunos cadastrados com sucesso!');
+        return redirect()->route('alunos.index')->with('ok', 'alunos cadastrados com sucesso!');
     }
 
     public function show(alunos $aluno)
     {   
         $aluno->where('RA', 'LIKE', $aluno->RA)->get();
-        $aluno->Filmes = trim($aluno->Filmes, '[');
-        $aluno->Filmes = trim($aluno->Filmes, ']');
-        return view('alunos.show', compact('aluno'));
+        $id = explode(',', $aluno->id);
+
+        $materias = array();
+        foreach($id as $i)
+        {
+        $materias = Materias::where('id', 'LIKE', $i)->get();
+        }
+
+        return view('alunos.show', compact('aluno'), compact('materias'));
     }
 
-    public function edit(alunos $aluno)
+    public function edit(alunos
+     $aluno)
     {
         $filmes = array();
 
@@ -93,17 +105,23 @@ class AlunosController extends Controller
                     }
                 }
             };
-        } 
-        return view('alunos.edit', compact('aluno'), ['filmes' => $filmes]);
+        } */
+
+        $materias = materias::orderBy('Nome', 'asc')->get();
+
+        return view('alunos
+        .edit', compact('aluno'), compact('materias'));
     }
 
-    public function update(Request $request, alunos $aluno)
+    public function update(Request $request, alunos
+     $aluno)
     {
         $request->validate([
             'RA' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
             'Filmes' => 'required',
+            'id_materia' => 'required',
         ]);
 
         $aluno->update([
@@ -111,14 +129,19 @@ class AlunosController extends Controller
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
             'Filmes' => $request->Filmes,
+            'id_materia' => $request->id_materia,
         ]);
 
-        return redirect()->route('alunos.index')->with('ok', 'Aluno atualizado com sucesso!');
+        return redirect()->route('alunos
+        .index')->with('ok', 'Aluno atualizado com sucesso!');
     }
 
-    public function destroy(alunos $aluno)
+    public function destroy(alunos
+     $aluno)
     {
         $aluno->delete();
-        return redirect()->route('alunos.index')->with('ok', 'Alunos removido com sucesso!');
+        return redirect()->route('alunos
+        .index')->with('ok', 'alunos
+         removido com sucesso!');
     }
 }
