@@ -18,7 +18,7 @@ class AlunosController extends Controller
 
     public function create()
     {   
-        /*$filmes = array();
+        $filmes = array();
 
         $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
         $categories = json_decode($auxcategories, true);
@@ -39,11 +39,11 @@ class AlunosController extends Controller
                     }
                 }
             };
-        } */
+        } 
 
         $materias = materias::orderBy('Nome', 'asc')->get();
 
-        return view('alunos.create', compact('materias'));
+        return view('alunos.create', compact('materias'), compact('filmes'));
     }
 
     public function store(Request $request)
@@ -60,12 +60,8 @@ class AlunosController extends Controller
             'RA' => $request->RA,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
-<<<<<<< Updated upstream
-            'Filmes' => $request->Filmes,
-            'id_materia' => $request->id_materia,
-=======
             'Filmes' => implode(", ", $request->Filmes),
->>>>>>> Stashed changes
+            'id_materia' => $request->id_materia,
         ]);
 
         return redirect()->route('alunos.index')->with('ok', 'alunos cadastrados com sucesso!');
@@ -109,12 +105,11 @@ class AlunosController extends Controller
                     }
                 }
             };
-        } */
+        } 
 
         $materias = materias::orderBy('Nome', 'asc')->get();
 
-        return view('alunos
-        .edit', compact('aluno'), compact('materias'));
+        return view('alunos.edit', compact('aluno'), compact('materias'), compact('filmes'));
     }
 
     public function update(Request $request, alunos
@@ -136,16 +131,13 @@ class AlunosController extends Controller
             'id_materia' => $request->id_materia,
         ]);
 
-        return redirect()->route('alunos
-        .index')->with('ok', 'Aluno atualizado com sucesso!');
+        return redirect()->route('alunos.index')->with('ok', 'Aluno atualizado com sucesso!');
     }
 
     public function destroy(alunos
      $aluno)
     {
         $aluno->delete();
-        return redirect()->route('alunos
-        .index')->with('ok', 'alunos
-         removido com sucesso!');
+        return redirect()->route('alunos.index')->with('ok', 'alunos removido com sucesso!');
     }
 }
