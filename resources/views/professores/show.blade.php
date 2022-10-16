@@ -22,5 +22,9 @@
         <strong>Sobrenome: </strong>
         {{ $professore->Sobrenome }}
     </div>
+    <div class="col-12 mb-3">
+        <strong>Matéria: </strong>
+        {{ $professore->Materia }}
+    </div>
 </div>
 @endsection

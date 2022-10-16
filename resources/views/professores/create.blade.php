@@ -12,13 +12,13 @@
 <div class="row">
 	<div class="col-12">
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-		  <strong>Some error occured!</strong>
-		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		  <ul>
-		  	@foreach($errors->all() as $error)
-		  	<li>{{$error}}</li>
-		  	@endforeach
-		  </ul>
+			<strong>Some error occured!</strong>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			<ul>
+				@foreach($errors->all() as $error)
+				<li>{{$error}}</li>
+				@endforeach
+			</ul>
 		</div>
 	</div>
 </div>
@@ -28,18 +28,35 @@
 		<form method="POST" action="{{route('professores.store')}}">
 			@csrf
 			<div class="mb-3">
-			    <label for="RP" class="form-label">RP</label>
-			    <input type="text" class="form-control" id="RP" name="RP" placeholder="RP">
-		  	</div>
-		  	<div class="mb-3">
-			    <label for="Nome" class="form-label">Nome</label>
-			    <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome">
-		  	</div>
-              <div class="mb-3">
-			    <label for="Sobrenome" class="form-label">Sobrenome</label>
-			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
-		  	</div>
-		  	<button type="submit" class="btn btn-primary">Submit</button>
+				<label for="RP" class="form-label">RP</label>
+				<input type="text" class="form-control" id="RP" name="RP" placeholder="RP">
+			</div>
+			<div class="mb-3">
+				<label for="Nome" class="form-label">Nome</label>
+				<input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome">
+			</div>
+			<div class="mb-3">
+				<label for="Sobrenome" class="form-label">Sobrenome</label>
+				<input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
+			</div>
+			<div class="mb-3">
+				<label for="Materias" class="form-label">Matérias</label><br>
+				<select name="Materia[]" class="materia" id="Materia">
+					@if($materias->count() > 0)
+					@foreach($materias as $materia)
+					<option value="{{ $materia['Nome'] }}">{{ $materia['Nome'] }}</option>
+					@endforeach
+					@else
+					<option colspan="4">Record not found!</option>
+					@endif
+				</select>
+				<script>
+					$(document).ready(function() {
+						$('.materia').select2();
+					});
+				</script>
+			</div>
+			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
 	</div>
 

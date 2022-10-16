@@ -11,6 +11,7 @@ class professores extends Model
     protected $fillable = [
         'RP',
         'Nome',
-        'Sobrenome',    
+        'Sobrenome',
+        'Materia',  
     ];
 }

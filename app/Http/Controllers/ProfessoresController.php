@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\professores;
 use App\Models\API;
+use App\Models\Materias;
 use Illuminate\Support\Facades\Http;
 
 class ProfessoresController extends Controller
@@ -16,8 +17,10 @@ class ProfessoresController extends Controller
     }
 
     public function create()
-    {
-        return view('professores.create');
+    {   
+        $materias = Materias::orderBy('Nome', 'asc')->get();
+
+        return view('professores.create', compact('materias'));
     }
 
 
@@ -27,12 +30,14 @@ class ProfessoresController extends Controller
             'RP' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
+            'Materia' => 'required',
         ]);
 
         professores::create([
             'RP' => $request->RP,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
+            'Materia' => $request->Materia,
         ]);
 
         return redirect()->route('professores.index')->with('ok', 'Professores cadastrados com sucesso!');
@@ -45,8 +50,10 @@ class ProfessoresController extends Controller
     }
 
     public function edit(professores $professore)
-    {
-        return view('professores.edit', compact('professore'));
+    {   
+        $materias = Materias::orderBy('Nome', 'asc')->get();
+        
+        return view('professores.edit', compact('professore'), compact('materias'));
     }
 
     public function update(Request $request, professores $professore)
@@ -55,12 +62,14 @@ class ProfessoresController extends Controller
             'RP' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
+            'Materia' => 'required',
         ]);
 
         $professore->update([
             'RP' => $request->RP,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
+            'Materia' => $request->Materia,
         ]);
 
         return redirect()->route('professores.index')->with('ok', 'Professor atualizado com sucesso!');

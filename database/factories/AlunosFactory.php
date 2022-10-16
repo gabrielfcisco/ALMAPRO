@@ -21,6 +21,7 @@ class AlunosFactory extends Factory
             'Nome' => $this->faker->firstName($gender = null),
             'Sobrenome' => $this->faker->lastName(),
             'Filmes' => $this->faker->word(),
+            'id_materia' => $this->faker->numerify('##'),
         ];
     }
 }
