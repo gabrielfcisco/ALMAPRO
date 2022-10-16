@@ -5,6 +5,9 @@
 		<h3>Matérias</h3>
 	</div>
 	<div class="col-12 col-md-2 text-end">
+		<a class="btn btn-primary" href="/">Início</a>
+	</div>
+	<div class="col-12 col-md-2 text-end">
 		<a class="btn btn-primary" href="{{route('materias.create')}}">Inserir Matéria</a>
 	</div>
 </div>
@@ -23,8 +26,7 @@
 		<table class="table table-primary">
 		  <thead>
 		    <tr>
-		      <th scope="col">ID</th>
-		      <th scope="col">RP</th>
+		      <th scope="col">#</th>
 			  <th scope="col">Nome</th>
 		      <th scope="col">Créditos</th>
 		      <th scope="col">Ação</th>
@@ -34,8 +36,7 @@
 	  		@if($materias->count() > 0)
 			  	@foreach($materias as $materia)
 			    <tr>
-			      	<td>{{$materia->id}}</td>
-				  	<td>{{$materia->RP}}</td>
+			      	<td>{{$loop->index + 1}}</td>
 			      	<td>{{$materia->Nome}}</td>
 			      	<td>{{$materia->Creditos}}</td>
 			      	<td>

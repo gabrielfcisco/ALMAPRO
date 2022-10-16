@@ -294,6 +294,7 @@
             .sm\:rounded-lg {
                 border-radius: .5rem
             }
+        }
         </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 	    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -305,9 +306,9 @@
             <a href="/" class="list-group-item list-group-item-action active" aria-current="true">
                 Inicial
             </a>
-            <a href="/alunos" class="list-group-item list-group-item-action">Alunos</a>
-            <a href="/materias" class="list-group-item list-group-item-action">Materias</a>
-            <a class="list-group-item list-group-item-action disabled">Professores</a>
+            <a href="{{route('alunos.index')}}" class="list-group-item list-group-item-action">Alunos</a>
+            <a href="{{route('materias.index')}}" class="list-group-item list-group-item-action">Materias</a>
+            <a href="{{route('professores.index')}}" class="list-group-item list-group-item-action">Professores</a>
         </div>
     </div>
 </body>

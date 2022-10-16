@@ -57,8 +57,8 @@
 				</script>
 			</div>
 			<div class="mb-3">
-				<label for="Materias" class="form-label">Matérias</label><br>
-				<select name="id_materia[]" class="materias" multiple="multiple" id="Materias">
+				<label for="id_materia" class="form-label">Matérias</label><br>
+				<select name="id_materia" class="id_materia" id="id_materia">
 					@if($materias->count() > 0)
 					@foreach($materias as $materia)
 					<option value="{{ $materia['id'] }}">{{ $materia['Nome'] }}</option>
@@ -69,7 +69,7 @@
 				</select>
 				<script>
 					$(document).ready(function() {
-						$('.materias').select2();
+						$('.id_materia').select2();
 					});
 				</script>
 			</div>

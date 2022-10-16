@@ -5,6 +5,9 @@
 		<h3>Alunos</h3>
 	</div>
 	<div class="col-12 col-md-2 text-end">
+		<a class="btn btn-primary" href="/">Início</a>
+	</div>
+	<div class="col-12 col-md-2 text-end">
 		<a class="btn btn-primary" href="{{route('alunos.create')}}">Inserir Aluno</a>
 	</div>
 </div>
