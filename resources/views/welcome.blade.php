@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
 
     <link href="css/welcome.css" rel="stylesheet" type="text/css" />
-    <title>Sobre - ALMAPRO</title>
+    <title>ALMAPRO</title>
 </head>
 
 <body>
@@ -25,9 +25,9 @@
         </header>
         <div class="homepage">
             <div class="text">
-                <h1><span>ALMAPRO</span></h1>
+                <h2>ALMAPRO</h2>
                 <p>Uma plataforma pra facilitar o gerenciamento da sua instituição de ensino!<br>Pensado para Alunos, Professores e Matérias</p>
-                <a href="/">Saiba mais</a>
+                <a href="/sobre">Saiba mais</a>
             </div>
             <div class="image">
                 <img src="seminar-animate.svg" class="animation" alt="professor-teaching">

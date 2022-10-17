@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Montserrat:ital,wght@0,400;1,700&family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Montserrat:wght@400;500;600;700;800;900&family=Roboto:wght@400;700;900&display=swap');
 *{  
     padding: 0;
     margin: 0;
@@ -66,11 +66,11 @@ header ul li a{
     max-width: 600px;
 }
 
-.homepage .text h1 {
+.homepage .text h2 {
     color: #044bc3;
     font-size: 4em;
-    line-height: 1.2em;
-    font-weight: 900;
+    line-height: 1.5em;
+    font-weight: 1000;
 }
 
 .homepage .text p {
@@ -112,3 +112,17 @@ header ul li a{
     background: #044bc3;
     clip-path: circle(600px at right 800px);
 }
+
+body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #ffff;        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #044bc3;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #ffff;  /* creates padding around scroll thumb */
+  }

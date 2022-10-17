@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
 
     <link href="css/sobre.css" rel="stylesheet" type="text/css" />
-    <title>ALMAPRO</title>
+    <title>Sobre - ALMAPRO</title>
 </head>
 
 <body>
