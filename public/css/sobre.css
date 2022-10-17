@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Montserrat:ital,wght@0,400;1,700&family=Roboto:wght@400;700;900&display=swap');
+*{  
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: grid;
+    justify-content: normal;
+    align-items: center;
+    background: #044bc3;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo{
+    position: relative;
+    max-width: 80px;
+}
+
+header ul {
+    position: relative;
+    display: flex;
+}
+
+header ul li {
+    list-style: none;
+}
+
+header ul li a{
+    display: inline-block;
+    padding: 10px 12px;
+    background: #ffff;
+    color: #044bc3;
+    border-radius: 40px;
+    font-weight: 500;
+    margin-left: 50px;
+    text-decoration: none;
+}
+
+.homepage {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    justify-content: normal;
+    align-items: center;
+}
+
+.homepage .text {
+    position: relative;
+    max-width: 80%;
+}
+
+.homepage .text h1 {
+    color: #ffff;
+    font-size: 4em;
+    line-height: 1.5em;
+    font-weight: 900;
+}
+
+.homepage .text h2 {
+    color:#ffff;
+    line-height: 1.5em;
+    margin-top: 20px;
+}
+
+.homepage .text p {
+    color:#ffff;
+    line-height: 1.5em;
+}
+
+.homepage .text ul {
+    color:#ffff;
+    margin-left: 2.5%;
+}
+
+.homepage .text ul li{
+    color:#ffff;
+    line-height: 1.5em;
+}
+
+
+.colab {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    justify-content: normal;
+    align-items: center;
+}
+
+.colab h2 {
+    position: relative;
+    max-width: 100vh;
+    color:#ffff;
+    line-height: 1.5em;
+    margin-top: 20px;
+}
+
+
+.colab ul {
+    color:#ffff;
+    margin-left: 2.5%;
+}
+
+.colab ul li{
+    line-height: 1.5em;
+}
+
+.colab ul li a {
+    text-decoration: none;
+    color:#ffff;
+}

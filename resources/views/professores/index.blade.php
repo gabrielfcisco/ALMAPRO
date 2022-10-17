@@ -6,8 +6,6 @@
 	</div>
 	<div class="col-12 col-md-2 text-end">
 		<a class="btn btn-primary" href="/">Início</a>
-	</div>
-	<div class="col-12 col-md-2 text-end">
 		<a class="btn btn-primary" href="{{route('professores.create')}}">Inserir Professor</a>
 	</div>
 </div>
