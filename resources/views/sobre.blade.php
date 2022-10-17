@@ -67,6 +67,7 @@
                     <li><a href="https://github.com/EduardoSilvaS/" target="_blank">EduardoSilvaS</a></li>
                     <li><a href="https://github.com/Gui019/" target="_blank">Gui019</a></li>
                     <li><a href="https://github.com/vytakei/" target="_blank">vytakei</a></li>
+                    <li><a href="https://github.com/joaovictorvjc" target="_blank">joaovictorvjc</a></li>
                 </ul>
             </div>
         </div>
