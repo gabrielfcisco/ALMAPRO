@@ -4,8 +4,8 @@
 	<div class="col-12 col-md-10">
 		<h3>Professores</h3>
 	</div>
-	<div class="col-12 col-md-2 text-end">
-		<a class="btn btn-primary" href="/">Início</a>
+	<div class="btn-group" role="group" aria-label="Basic example">
+		<a class="btn btn-primary" href="/" role="button">Início</a>
 		<a class="btn btn-primary" href="{{route('professores.create')}}">Inserir Professor</a>
 	</div>
 </div>

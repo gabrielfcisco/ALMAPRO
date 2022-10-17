@@ -12,7 +12,7 @@
 <div class="row">
 	<div class="col-12">
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-		  <strong>Some error occured!</strong>
+		  <strong>Um erro ocorreu!</strong>
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		  <ul>
 		  	@foreach($errors->all() as $error)
@@ -41,14 +41,14 @@
 			    <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" value="{{$aluno->Sobrenome}}">
 		  	</div>
 			<div class="mb-3">
-				<label for="Filmes" class="form-label">Filmes</label>
+				<label for="Filmes" class="form-label">Filmes</label><br>
 				<select class="filmes" name="Filmes[]" multiple="multiple" id="Filmes" value="{{$aluno->Filmes}}">
 					@if(count($filmes) > 0)
 						@foreach($filmes as $filme)
 						<option value="{{ $filme['nome'] }}">{{ $filme['nome'] }}</option>
 					@endforeach
 					@else
-						<option colspan="4">Record not found!</option>
+						<option colspan="4">Filme não inserido!</option>
 					@endif
 				</select>
 				<script>
@@ -57,9 +57,24 @@
 					});
 				</script>
 			</div>
+			<div class="mb-3">
+				<label for="id_materia" class="form-label">Matérias</label><br>
+				<select name="id_materia" class="id_materia" id="id_materia">
+					@if($materias->count() > 0)
+					@foreach($materias as $materia)
+					<option value="{{ $materia['id'] }}">{{ $materia['Nome'] }}</option>
+					@endforeach
+					@else
+					<option colspan="4">Matéria não inserida!</option>
+					@endif
+				</select>
+				<script>
+					$(document).ready(function() {
+						$('.id_materia').select2();
+					});
+				</script>
+			</div>
 		  	<button type="submit" class="btn btn-primary">Enviar</button>
-			
-		  	<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 </div>

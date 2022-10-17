@@ -18,9 +18,8 @@ class ProfessoresController extends Controller
 
     public function create()
     {   
-        $materias = Materias::orderBy('Nome', 'asc')->get();
 
-        return view('professores.create', compact('materias'));
+        return view('professores.create');
     }
 
 
@@ -30,14 +29,12 @@ class ProfessoresController extends Controller
             'RP' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
-            'Materia' => 'required',
         ]);
 
         professores::create([
             'RP' => $request->RP,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
-            'Materia' => $request->Materia,
         ]);
 
         return redirect()->route('professores.index')->with('ok', 'Professores cadastrados com sucesso!');
@@ -50,10 +47,8 @@ class ProfessoresController extends Controller
     }
 
     public function edit(professores $professore)
-    {   
-        $materias = Materias::orderBy('Nome', 'asc')->get();
-        
-        return view('professores.edit', compact('professore'), compact('materias'));
+    {           
+        return view('professores.edit', compact('professore'));
     }
 
     public function update(Request $request, professores $professore)
@@ -62,14 +57,12 @@ class ProfessoresController extends Controller
             'RP' => 'required',
             'Nome' => 'required',
             'Sobrenome' => 'required',
-            'Materia' => 'required',
         ]);
 
         $professore->update([
             'RP' => $request->RP,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
-            'Materia' => $request->Materia,
         ]);
 
         return redirect()->route('professores.index')->with('ok', 'Professor atualizado com sucesso!');

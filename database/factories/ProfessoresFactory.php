@@ -20,7 +20,6 @@ class ProfessoresFactory extends Factory
             'RP' => $this->faker->numerify('########'),
             'Nome' => $this->faker->firstName($gender = null),
             'Sobrenome' => $this->faker->lastName(),
-            'Materia' => $this->faker->word(),
         ];
     }
 }

@@ -70,19 +70,18 @@ class AlunosController extends Controller
     public function show(alunos $aluno)
     {   
         $aluno->where('RA', 'LIKE', $aluno->RA)->get();
-        $id = explode(',', $aluno->id);
+        $id = explode(',', $aluno->id_materia);
 
-        $materias = array();
         foreach($id as $i)
         {
         $materias = Materias::where('id', 'LIKE', $i)->get();
         }
+        
 
         return view('alunos.show', compact('aluno'), compact('materias'));
     }
 
-    public function edit(alunos
-     $aluno)
+    public function edit(alunos $aluno)
     {
         $filmes = array();
 
@@ -109,7 +108,7 @@ class AlunosController extends Controller
 
         $materias = materias::orderBy('Nome', 'asc')->get();
 
-        return view('alunos.edit', compact('aluno'), compact('materias'), compact('filmes'));
+        return view('alunos.edit', compact('aluno', 'materias', 'filmes'));
     }
 
     public function update(Request $request, alunos
@@ -127,7 +126,7 @@ class AlunosController extends Controller
             'RA' => $request->RA,
             'Nome' => $request->Nome,
             'Sobrenome' => $request->Sobrenome,
-            'Filmes' => $request->Filmes,
+            'Filmes' => implode(", ", $request->Filmes),
             'id_materia' => $request->id_materia,
         ]);
 

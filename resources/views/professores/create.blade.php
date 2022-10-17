@@ -39,23 +39,6 @@
 				<label for="Sobrenome" class="form-label">Sobrenome</label>
 				<input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
 			</div>
-			<div class="mb-3">
-				<label for="Materias" class="form-label">Matérias</label><br>
-				<select name="Materia[]" class="materia" id="Materia">
-					@if($materias->count() > 0)
-					@foreach($materias as $materia)
-					<option value="{{ $materia['Nome'] }}">{{ $materia['Nome'] }}</option>
-					@endforeach
-					@else
-					<option colspan="4">Record not found!</option>
-					@endif
-				</select>
-				<script>
-					$(document).ready(function() {
-						$('.materia').select2();
-					});
-				</script>
-			</div>
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
 	</div>

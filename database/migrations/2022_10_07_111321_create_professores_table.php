@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('RP', 8);
             $table->string('Nome');
             $table->string('Sobrenome');
-            $table->string('Materia');
             $table->timestamps();
         });
     }

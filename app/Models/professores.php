@@ -12,6 +12,5 @@ class professores extends Model
         'RP',
         'Nome',
         'Sobrenome',
-        'Materia',  
     ];
 }

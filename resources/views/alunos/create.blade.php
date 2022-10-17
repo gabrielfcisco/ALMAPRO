@@ -12,7 +12,7 @@
 <div class="row">
 	<div class="col-12">
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			<strong>Some error occured!</strong>
+			<strong>Um erro ocorreu!</strong>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			<ul>
 				@foreach($errors->all() as $error)
@@ -47,7 +47,7 @@
 					<option value="{{ $filme['nome'] }}">{{ $filme['nome'] }}</option>
 					@endforeach
 					@else
-					<option colspan="4">Record not found!</option>
+					<option colspan="4">Filme não inserido!</option>
 					@endif
 				</select>
 				<script>
@@ -64,7 +64,7 @@
 					<option value="{{ $materia['id'] }}">{{ $materia['Nome'] }}</option>
 					@endforeach
 					@else
-					<option colspan="4">Record not found!</option>
+					<option colspan="4">Matéria não inserida!</option>
 					@endif
 				</select>
 				<script>
