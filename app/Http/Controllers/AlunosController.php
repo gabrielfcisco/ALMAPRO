@@ -74,7 +74,7 @@ class AlunosController extends Controller
 
         foreach($id as $i)
         {
-        $materias = Materias::where('id', 'LIKE', $i)->get();
+            $materias = Materias::where('id', 'LIKE', $i)->get();
         }
         
 

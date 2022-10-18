@@ -41,7 +41,10 @@
 					<td>{{$aluno->Sobrenome}}</td>
 					<td>
 						<form action="{{ route('alunos.destroy', $aluno->id) }}" method="POST">
-							<a class="btn btn-info" href="{{ route('alunos.show', $aluno->id) }}">Detalhes</a>
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{ route('alunos.show', $aluno->id) }}">
+								Detalhes
+							</button>
+							@yield('show')
 							<a class="btn btn-primary" href="{{ route('alunos.edit', $aluno->id) }}">Editar</a>
 							@csrf
 							@method('DELETE')
@@ -57,7 +60,7 @@
 				@endif
 			</tbody>
 		</table>
-			{!! $alunos->links() !!}
+		{!! $alunos->links() !!}
 	</div>
 </div>
 @endsection
