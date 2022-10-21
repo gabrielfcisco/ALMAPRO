@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\alunos
-;
+use App\Models\alunos;
 use App\Models\Materias;
 use Illuminate\Support\Facades\Http;
 
@@ -17,29 +16,28 @@ class AlunosController extends Controller
 
         foreach($id as $i)
         {
-            $materias = Materias::where('id', 'LIKE', $i)->get();
+            $materias = Materias::where('id', '=', $i)->get();
         }
 
-        return view('alunos.index', compact('alunos'), compact('materias'));
+        return view('alunos.index', compact('alunos', 'materias'));
     }
 
     public function create()
     {   
         $filmes = array();
 
-        $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
-        $categories = json_decode($auxcategories, true);
+        //$auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
+        $categories = json_decode(Http::get('https://www.learn-laravel.cf/categories'), true);
 
         for($j=1; $j<7; $j++) {
 
-            $api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
-            $auxjson = json_decode($api, true);
-            $api = $auxjson['data'];
-
-            foreach ($api as $filme){
+            //$api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
+            $api = json_decode(Http::get('https://www.learn-laravel.cf/movies?page=' . $j), true);
+            
+            foreach ($api['data'] as $filme){
                 for($i=0 ; $i<6; $i++){
                     if($filme['category_id'] == $i+1){
-                        $filmes[] = array(
+                        $filmes = array(
                             'id' => $filme['id'], 
                             'nome' => $filme['name'],
                             'category' => $categories[$i]['name']);
@@ -50,7 +48,7 @@ class AlunosController extends Controller
 
         $materias = materias::orderBy('Nome', 'asc')->get();
 
-        return view('alunos.create', compact('materias'), compact('filmes'));
+        return view('alunos.create', compact('materias', 'filmes'));
     }
 
     public function store(Request $request)
@@ -78,19 +76,18 @@ class AlunosController extends Controller
     {
         $filmes = array();
 
-        $auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
-        $categories = json_decode($auxcategories, true);
+        //$auxcategories =  Http::get('https://www.learn-laravel.cf/categories');
+        $categories = json_decode(Http::get('https://www.learn-laravel.cf/categories'), true);
 
         for($j=1; $j<7; $j++) {
 
-            $api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
-            $auxjson = json_decode($api, true);
-            $api = $auxjson['data'];
-
-            foreach ($api as $filme){
+            //$api = Http::get('https://www.learn-laravel.cf/movies?page=' . $j);
+            $api = json_decode(Http::get('https://www.learn-laravel.cf/movies?page=' . $j), true);
+            
+            foreach ($api['data'] as $filme){
                 for($i=0 ; $i<6; $i++){
                     if($filme['category_id'] == $i+1){
-                        $filmes[] = array(
+                        $filmes = array(
                             'id' => $filme['id'], 
                             'nome' => $filme['name'],
                             'category' => $categories[$i]['name']);
@@ -104,8 +101,7 @@ class AlunosController extends Controller
         return view('alunos.edit', compact('aluno', 'materias', 'filmes'));
     }
 
-    public function update(Request $request, alunos
-     $aluno)
+    public function update(Request $request, alunos $aluno)
     {
         $request->validate([
             'RA' => 'required',
@@ -126,10 +122,9 @@ class AlunosController extends Controller
         return redirect()->route('alunos.index')->with('ok', 'Aluno atualizado com sucesso!');
     }
 
-    public function destroy(alunos
-     $aluno)
+    public function destroy(alunos $aluno)
     {
         $aluno->delete();
-        return redirect()->route('alunos.index')->with('ok', 'alunos removido com sucesso!');
+        return redirect()->route('alunos.index')->with('ok', 'aluno removido com sucesso!');
     }
 }
