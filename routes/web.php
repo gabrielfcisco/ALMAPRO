@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('login', [AlunosController::class, 'login'])->name('alunos.login');
+Route::put('login/authenticate', [AlunosController::class, 'authenticate'])->name('alunos.authenticate');
+
 Route::resource('alunos', AlunosController::class);
 
 Route::resource('professores', ProfessoresController::class);

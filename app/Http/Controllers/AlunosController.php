@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\alunos
 ;
 use App\Models\Materias;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class AlunosController extends Controller
@@ -139,5 +140,28 @@ class AlunosController extends Controller
     {
         $aluno->delete();
         return redirect()->route('alunos.index')->with('ok', 'alunos removido com sucesso!');
+    }
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('alunos.index');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

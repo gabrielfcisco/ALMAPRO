@@ -6,6 +6,12 @@ namespace Database\Seeders;
 
 use App\Models\business;
 use App\Models\alunos;
+<<<<<<< Updated upstream
+=======
+use App\Models\materias;
+use App\Models\professores;
+use App\Models\User;
+>>>>>>> Stashed changes
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +24,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         alunos::factory(10)->create();
+<<<<<<< Updated upstream
+=======
+        professores::factory(5)->create();
+        materias::factory(3)->create();
+        User::factory(10)->create();
+>>>>>>> Stashed changes
 
     }
 }
